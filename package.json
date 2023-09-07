@@ -1,0 +1,22 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "stage one hng10 task server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sir-ct/hng10-task1.git"
+  },
+  "author": "Onyeka David",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sir-ct/hng10-task1/issues"
+  },
+  "homepage": "https://github.com/Sir-ct/hng10-task1#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
