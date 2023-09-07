@@ -9,7 +9,7 @@ app.get("/api", (req, res)=>{
 
     return res.json({slack_name: slackName, 
         current_day: Intl.DateTimeFormat("en-Us", {weekday: "long"}).format(day), 
-        utc_time: day.toUTCString(),
+        utc_time: day.toISOString(),
         track: track,
         github_file_url: "https://github.com/Sir-ct/hng10-task1/server.js",
         github_repo_url: "https://github.com/Sir-ct/hng10-task1",
