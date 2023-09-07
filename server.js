@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment")
 
 const app = express()
 
@@ -9,7 +10,7 @@ app.get("/api", (req, res)=>{
 
     return res.json({slack_name: slackName, 
         current_day: Intl.DateTimeFormat("en-Us", {weekday: "long"}).format(day), 
-        utc_time: day.toISOString(),
+        utc_time: moment().utc().format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
         track: track,
         github_file_url: "https://github.com/Sir-ct/hng10-task1/server.js",
         github_repo_url: "https://github.com/Sir-ct/hng10-task1",
