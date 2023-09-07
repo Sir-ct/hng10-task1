@@ -8,10 +8,10 @@ app.get("/api", (req, res)=>{
     let day = new Date();
 
     return res.json({slack_name: slackName, 
-        current_day: day.getDay(), 
-        utc_time: day.getUTCDate(),
-        track: "Backend",
-        github_file_url: "https://github.com/Sir-ct/hng10-task1/server",
+        current_day: Intl.DateTimeFormat("en-Us", {weekday: "long"}).format(day), 
+        utc_time: day.toUTCString(),
+        track: track,
+        github_file_url: "https://github.com/Sir-ct/hng10-task1/server.js",
         github_repo_url: "https://github.com/Sir-ct/hng10-task1",
         status_code: 200
      })
