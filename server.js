@@ -1,23 +1,68 @@
+require('dotenv').config()
 const express = require("express");
-const moment = require("moment")
+const mongoose = require("mongoose");
+const PersonSchema = require("./models/PersonSchema")
 
 const app = express()
 
-app.get("/api", (req, res)=>{
-    let slackName = req.query.slack_name;
-    let track = req.query.track;
-    let day = new Date();
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
-    return res.json({slack_name: slackName, 
-        current_day: Intl.DateTimeFormat("en-Us", {weekday: "long"}).format(day), 
-        utc_time: moment().utc().format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
-        track: track,
-        github_file_url: "https://github.com/Sir-ct/hng10-task1/server.js",
-        github_repo_url: "https://github.com/Sir-ct/hng10-task1",
-        status_code: 200
-     })
+app.get("/api/:user_id", async (req, res)=>{
+    try{
+        let person = await PersonSchema.findById(req.params.user_id)
+        if(!person) return res.status(404).json({success: false, message: "Person not found"})
+
+        return res.status(200).json({success: true, message: "Person found", data: person})
+    }catch(err){
+        console.log(err.message);
+        return res.status(400).json({success: false, message: err.message})
+    }
+    
 })
 
-app.listen(5001, ()=>{
+app.post("/api", async (req, res)=>{
+
+    if(!req.body.name || req.body.name == ""){
+        return res.status(400).json({success: false, message: "name field is required"})
+    }
+    try{
+        let person = await new PersonSchema(req.body).save()
+        return res.status(201).json({success: true, message: "Person created successefully", data: person})
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({success: false, message: "An error occured"})
+    }
+    
+})
+
+app.put("/api/:user_id", async(req, res)=>{
+    if(!req.body.name || req.body.name === ""){
+        return res.status(400).json({success: false, message: "name is required"})
+    }
+    try{
+        await PersonSchema.findByIdAndUpdate(req.params.user_id, req.body)
+        let person = await PersonSchema.findById(req.params.user_id)
+        return res.status(200).json({success: true, message: "Person edited successfully", data: person})
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({success: false, message:"An error occured"})
+    }
+})
+
+app.delete("/api/:user_id", async(req, res)=>{
+    try{
+        let person = await PersonSchema.findByIdAndDelete(req.params.user_id)
+        return res.status(200).json({success: true, message: "Person deleted successfully", data: person})
+    }catch(err){
+        console.log(err.message)
+        return res.status(500).json({success: false, message: "An error occured"})
+    }
+})
+
+app.listen(5001, async ()=>{
+    await mongoose.connect(process.env.DB_STRING).then(()=>{
+        console.log('database connected')
+    })
     console.log("server listening on port " + 5001);
 })
