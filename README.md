@@ -2,7 +2,9 @@
 
 ## setup and installation
 
-- copy link and clone using `git clone` command to clone on your local machine
+- copy link by clicking on the `code` button
+- navigate to your preferred directory and clone using `git clone <url>` command on your local machine
+- navigate into the cloned project `cd <folder_name>`
 - run `npm install` to install the dependencies from package.json file
 - run `npm run dev` to start the application on `localhost:5001`
 

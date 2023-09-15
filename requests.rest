@@ -1,4 +1,4 @@
-GET http://localhost:5001/api/6503a1fc1372d11914dd4655
+GET http://localhost:5001/api/onyeka
 
 ###
 
@@ -10,13 +10,13 @@ Content-Type: application/json
     "name": "onyeka"
 }
 ###
-PUT http://localhost:5001/api/6503a1fc1372d11914dd4655
+PUT http://localhost:5001/api/onyeka dav
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "onyeka dav"
+    "name": "onyeka david"
 }
 
 ###
-DELETE http://localhost:5001/api/6503a1fc1372d11914dd4655
+DELETE http://localhost:5001/api/onyeka david
