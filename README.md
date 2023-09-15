@@ -21,17 +21,17 @@ payload - `{
     name: string *required
 }`
 
-#### get user - `/api/:user_name`
+#### get user - `/api/:user_name/`
 method: GET
 
-#### edit user - `api/:user_name`
+#### edit user - `/api/:user_name/`
 method: PUT
 
 payload - `{
     name: string
 }`
 
-#### delete user - `/api/:user_name`
+#### delete user - `/api/:user_name/`
 method: DELETE
 
 
