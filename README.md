@@ -15,7 +15,7 @@
 ### endpoints
 
 #### add user - `/api/`
-method: PUT
+method: POST
 
 payload - `{
     name: string *required
