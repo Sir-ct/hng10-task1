@@ -10,4 +10,26 @@
 
 ## API Usage
 
-*Base Url: https://task1ct.onrender.com
+* Base Url: https://task1ct.onrender.com
+
+#### endpoints
+
+* add user - `/api/`
+payload - `{
+    name: string *required
+}`
+
+* get user - `/api/:user_name`
+method: GET
+
+* edit user - `api/:user_name`
+method: PUT
+
+payload - `{
+    name: string
+}`
+
+* delete user - `/api/:user_name`
+method: DELETE
+
+
